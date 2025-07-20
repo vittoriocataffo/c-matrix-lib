@@ -60,7 +60,7 @@ void matrix_print(const Matrix *m) {
     printf("Matrix [%zux%zu]:\n", m->rows, m->cols);
     for (size_t i = 0; i < m->rows; i++) {
         for (size_t j = 0; j < m->cols; j++) {
-            printf("%8.2f", M_AT(m,i,j));
+            printf("%12.3f", M_AT(m,i,j));
         }
         printf("\n");
     }
