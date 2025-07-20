@@ -3,6 +3,8 @@
 #ifndef MATRIX_H
 #define MATRIX_H
 
+#include <stddef.h>
+
 /* This is the structure representing the 2D matrix. The matrix data is stored in a single, contigous block of memory */
 typedef struct {
 	size_t rows;	// number of rows

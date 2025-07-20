@@ -1,8 +1,6 @@
 #include "matrix.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
-#include <string.h>
 
 /* Macro for translating the 2D coordinates (row,cols) into a single 1D array index */
 #define M_AT(m,r,c) ( m->data[ r * m->cols + c] )

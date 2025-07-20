@@ -2,6 +2,7 @@
 
 #include "matrix.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
 
 /* Macro for translating the 2D coordinates (row,cols) into a single 1D array index */
