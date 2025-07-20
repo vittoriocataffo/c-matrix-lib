@@ -1,4 +1,4 @@
-/*Test program for matrix library-85e5e32c8188  *******/
+/* Test program for matrix library */
 
 #include "matrix.h"
 #include <stdio.h>
