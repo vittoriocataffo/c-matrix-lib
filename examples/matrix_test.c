@@ -1,50 +1,55 @@
+/*Test program for matrix library-85e5e32c8188  *******/
+
 #include "matrix.h"
 #include <stdio.h>
+#include <time.h>
 
-
+/* Macro for translating the 2D coordinates (row,cols) into a single 1D array index */
 #define M_AT(m,r,c) ( m->data[ r * m->cols + c] )
 
 int main(void) {
 
-    // create two matrices
-    Matrix *A = matrix_create(2,3);
-    Matrix *B = matrix_create(2,3);
-    
-    // fill them with data
-    for (int i = 0; i < A->rows; i++) {
-        for (int j = 0; j < A->cols; j++) {
-            M_AT(A,i,j) = i+j;
-            M_AT(B,i,j) = 6-i;
-        }
-    }
+    srand(time(NULL)); // seed the random number generator
 
-    // print them
-    printf("A:\n");
+    // create two matrices
+    Matrix *A = matrix_create(3,4);
+    if (A == NULL) {printf("matrix_create failed\n"); return 1;} // return 1;
+    printf("A before random initialization:\n");
     matrix_print(A);
-    printf("B:\n");
+
+    matrix_init_rand(A, -10.0, 10.0);
+    printf("A after random initialization:\n");
+    matrix_print(A);
+
+    Matrix *B = matrix_clone(A);
+    if (B == NULL) {printf("matrix_create failed\n"); return 1;} // return 1;
+    printf("B (copy of A):\n");
     matrix_print(B);
 
     // add the two matrix
     Matrix *C = matrix_add(A,B);
-    printf("C=A+B:\n");
+    if (C == NULL) {printf("matrix_add failed\n"); return 1;}
+    printf("C = A + B:\n");
     matrix_print(C);
 
     // multiply by scalar
-    Matrix *D = matrix_mul_scalar(A,2);
-    printf("2*A\n");
+    Matrix *D = matrix_mul_scalar(A,10.0);
+    if (D == NULL) {printf("matrix_mul_scalar failed\n"); return 1;}
+    printf("D = 10 * A:\n");
     matrix_print(D);
 
     // transpose the matrix
-    Matrix *E = matrix_transpose(B);
-    printf("E (transpose of B)\n");
+    Matrix *E = matrix_transpose(D);
+    if (E == NULL) {printf("matrix_transpose failed\n"); return 1;}
+    printf("E (transpose of D)\n");
     matrix_print(E);
 
     // multiply two matrices
     Matrix *F = matrix_mul(A, E);
-    printf("A*E\n");
+    if (F == NULL) {printf("matrix_mul failed\n"); return 1;}
+    printf("F = A * E:\n");
     matrix_print(F);
 
-    
     matrix_free(A);
     matrix_free(B);
     matrix_free(C);
