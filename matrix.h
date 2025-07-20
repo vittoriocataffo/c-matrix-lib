@@ -5,13 +5,16 @@
 
 /* This is the structure representing the 2D matrix. The matrix data is stored in a single, contigous block of memory */
 typedef struct {
-	int rows;	// number of rows
-	int cols;	// number of columns
+	size_t rows;	// number of rows
+	size_t cols;	// number of columns
 	double *data;	// Pointer to the data (rows * cols elements)
 } Matrix;
 
 /* Returns the pointer to the newly created matrix of the specified dimensions */
-Matrix* matrix_create(int rows, int cols);
+Matrix* matrix_create(size_t rows, size_t cols);
+
+/* Fills the matrix with random values between min and max */
+void matrix_init_rand(Matrix *m, double min, double max);
 
 /* Frees the memory associated with a matrix */
 void matrix_free(Matrix *m);
@@ -23,7 +26,7 @@ void matrix_print(const Matrix *m);
 Matrix* matrix_clone(const Matrix *m);
 
 /* Creates an identity matrix of a given size */
-Matrix* matrix_identity(int size);
+Matrix* matrix_identity(size_t size);
 
 /* Adds two matrices */
 Matrix* matrix_add(const Matrix *a, const Matrix *b);
